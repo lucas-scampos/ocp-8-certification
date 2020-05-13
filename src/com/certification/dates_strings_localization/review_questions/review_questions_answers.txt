@@ -1,0 +1,45 @@
+1. A, B - OK
+2. C, D, E - OK
+3. C, D - OK
+4. C - X (B)
+
+Java will first look for the most specific matches it can find, starting with Dolphins_en_ US.java and then Dolphins_en_US.properties.
+Since neither is found, it drops the coun- try and looks for Dolphins_en.java.
+Since a match is found, there is no reason to go on to the next one, which is Dolphins_en.properties.
+
+5. D - OK
+6. D, F - OK
+7. B - X
+
+A LocalDate does not have a time element. Therefore, it has no method to add hours, and the code does not compile.
+
+8. F - OK
+9. B - OK
+10. E - OK
+11. B - OK
+12. B, E - X(A,E)
+
+A, E. When dealing with time zones, it is best to convert to GMT first by subtracting the time zone.
+The first date/time is 9:00 GMT, and the second is 15:00 GMT. Therefore, the first one is earlier by 6 hours.
+
+13. B - OK
+14.  A - X (A,C,D)
+
+A, C, D. Option B is incorrect because there is no March 40th.
+Option E is incorrect because 2017 isn’t a leap year and therefore has no February 29th.
+Option D is correct because it is just a regular date and has nothing to do with daylight savings time.
+Options A and C are correct because Java is smart enough to adjust for daylight savings time.
+
+15. B,C - OK
+16. A,B, F - OK
+17. A - X (E)
+
+E. The Properties class defines a get() method that does not allow for a default value. It also has a getProperty() method,
+ which returns the default value if the key is not pro- vided.
+18. D - OK
+19. A,B,C - OK
+20.A,E - X (E)
+
+E. Local______ explicitly excludes time zones. Instant represents a point in time, but always uses GMT rather than the desired time zone.
+
+14/20

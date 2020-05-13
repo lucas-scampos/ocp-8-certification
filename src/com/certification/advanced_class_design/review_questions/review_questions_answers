@@ -1,0 +1,54 @@
+1. A - OK
+2. A - OK
+3. C - OK
+4. C - OK
+5. D  - X (A,D)
+6. B  - OK
+7. C - X (E)
+    A case statement on an enum data type must be unqualified name of an enumeration constant. For example case
+    VANILLA would be valid. You cannot use the ordinal equivalents.
+
+8. E - X (C)
+    Inner is a member inner class. Inner classes are not allowed to contain static methods or static variables.
+    Only nested static classes are permitted to contain statics.
+9. C - X (B)
+    Outer.this.x is the correct way to refer to x in the Outer class
+10. A - X (C)
+    The code compiles fine. A member inner class is allowed to be private, and it is allowed to refer to instance variables from the outer class.
+    Two .class files are generated. Book.class matches the name of the outer class. The inner class does not compile
+    to BookReader.class. That would introduce the possibility of a naming conflict. Book$BookReader.class is correct because it shows the scope of
+    the class is limited to Book. You don’t need to know that $ is the syntax,
+    but you do need to know the number of classes and that BookReader is not a top-level class.
+11. D, B - X (D)
+    Correct: import static my.sports.Football.*
+    B is incorrect because * does not import classes in a package (import static my.sports.*)
+
+12. C - X (E)
+    The main method tries to cast a Firefox instance to IE. Since IE is not a subclass of Firefox, this throws a ClassCastException
+13. F - X (B)
+    c is an instance of Chipmunk. It is an instance of any superclasses or interfaces it implements.
+    In this case, those are Furry, Mammal, and Object. null is not an instance of any type.
+    Therefore, the first two if statements execute and result is 3.
+
+    null instanceof Chipmunk (COMPILES)
+14. E, F - X (E)
+    F does compile because Runnable is an interface. In theory, someone could subclass Chipmunk and have the subclass implement Runnable.
+15. E, B - OK
+16. B - X (E)
+    This is a member inner class. It needs to be created using an instance of the outer class.
+    The syntax looks weird, but it creates an object of the outer class and then an object of the inner class from it.
+
+17. G - X (B,C)
+    Enums are required to have a semicolon after the list of values if there is anything else in the enum.
+    Enums are not allowed to have a public constructor.
+
+18. G - OK
+    abstract enum methods require each enum type to implement the method
+19. A - X (A,C)
+    final keyboard does not affect on method overrides
+20. C - OK
+    Virtual method invocation says that the subclass method gets called at runtime rather than the type in the variable reference.
+    However, we are not calling methods here. We are referring to instance variables. With instance variables, the reference type does matter.
+21. A, C, E - OK
+
+9/21 FAIL

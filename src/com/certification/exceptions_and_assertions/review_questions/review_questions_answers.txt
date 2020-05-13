@@ -1,0 +1,49 @@
+1.C - OK
+2.B, C - OK
+3. E, A - X (E)
+Option A is incorrect because FileNotFoundException is a subclass
+of IOException
+
+4. A,B,  - OK
+5.G - X (C)
+
+C. After opening both resources in the try-with-resources statement, T is printed.
+Then the try-with-resource completes and closes the resources in reverse order from which they were opened.
+After W is printed, an exception is thrown. However, the remaining resource is still closed and D is printed.
+The exception thrown is then caught and E is printed. Last, the finally block is run, printing F. Therefore the answer is TWDEF.
+
+6.G - OK
+7.C - OK
+8.B,C - OK
+9.A,D -OK
+10.A, D - X( A,E)
+D is incorrect because assertions should not have side effects.
+
+11.B,D,E - OK
+
+12.A,B,D - X (A D E)
+Since a single exception type is caught, only the same type of exception or a subclass is allowed to
+be assigned to the variable in the catch block.
+Therefore D and E are correct. Additionally A is correct because there are no changes to the variable.
+
+13.A, - OK
+14.A, D -X (F)
+F. A multi-catch cannot catch both a superclass and subclass.
+Notice how similar questions can be while testing something that is entirely different.
+
+15.B,E, -OK
+16.G - X (C)
+C. The exception inside the try block becomes the primary exception since it is thrown first.
+Then two suppressed exceptions are added to it when trying to close the AutoCloseable resources.
+17.A, - X (A,B)
+
+A, B. Closeable was the original interface for IO classes.
+AutoCloseable was added in Java 7 along with try-with-resources. Closeable extends AutoCloseable for backward compatibility.
+18.B,F - X(B)
+B. The main difference between AutoCloseable and Closeable is that AutoCloseable has Exception in the signature
+and Closeable has only IOException in the signature. Since IllegalStateException is a runtime exception, it can be thrown by any method.
+
+19.D, -OK
+20.E -OK
+
+12/20

@@ -1,0 +1,139 @@
+1. D,F OK
+
+
+2.C,D,F,B - X (A, C, D, F)
+Runnable and Callable statements both take no method arguments as input, so B is incorrect.
+Runnable returns void and Callable returns a generic type, so F is correct, and E and G are incorrect.
+All methods are capable of throwing unchecked exceptions, so A is correct.
+Only Callable is capable of throwing checked exceptions, so C is correct.
+Both Runnable and Callable can be implemented with lambda expressions, so D is correct.
+
+3. F -X (B,C)
+
+The code does not compile, so A and F are incorrect. The first problem is that although a ScheduledExecutorService is created,
+it is assigned to an ExecutorService. Since scheduleWithFixedDelay() does not exist in ExecutorService,
+ line w1 will not compile, and B is correct. The second problem is that scheduleWithFixedDelay()supports only Runnable,
+  not Callable, and any attempt to return a value is invalid in a Runnable lambda expression; therefore line w2
+  will also not compile and C is correct. The rest of the lines compile without issue, so D and E are incorrect.
+
+4. A -X (C)
+
+The code compiles and runs without throwing an exception or entering an infinite loop, so D, E, and F are incorrect.
+The key here is that the increment operator ++ is not atomic.
+While the first part of the output will always be 100, the second part is nondeterministic.
+ It could output any value from 1 to 100, because the threads can overwrite each other’s work.
+ Therefore, C is the correct answer and A and B are incorrect.
+
+5.D - OK
+6.B - OK
+7.G - X (A)
+The code compiles without issue, so D is incorrect. The CopyOnWriteArrrayList
+class is designed to preserve the original list on iteration, so the first loop will be executed exactly three times and E is incorrect.
+ The ConcurrentSkipListSet class allows modifications while iterating, so it is possible that the second loop could generate an infinite loop.
+In this case, though, the second loop executes exactly four times, since elements in a set are unique and 5 can be added only once.
+For these reasons, F and G are also incorrect. Finally, despite using the elements of l1 to populate the collections,
+l2 and s3 are not backed by the original list, so the size of l1 is 3. Likewise, the size of l2 is 6 and the size of s3 is 4,
+ so A is the correct answer.
+
+8.C, G - X (G)
+G. The code compiles and runs without issue, so C, D, E, F, and H are incorrect.
+There are two important things to notice: first, synchronizing on the first output doesn’t actually impact the results of the code.
+Second, sorting on a parallel stream does not mean that findAny() will return the first record.
+The findAny() method will return the value from the first thread that retrieves a record. Therefore,
+the output is not guaranteed for either serial or parallel stream. Since the results cannot be predicted ahead of time, G is the correct answer.
+
+9.C, E,F - X (A,C,E)
+The code compiles without issue, so F is incorrect. Note that the compute() method is protected in the parent class,
+ although you can override it with public without issue since this is a more accessible modifier. Since compute() returns a value,
+RecursiveTask must be inherited instead of RecursiveAction, so C is correct and B is incorrect.
+The code does correctly find the minimum value on a non-empty array without entering an infinite loop, so A is correct and D is incorrect.
+ Finally, since the code calls join() immediately after fork(), causing the process to wait,
+  it does not perform any faster if there are 100 threads versus 1 thread, so E is also correct.
+
+10.A - X (C)
+The code does not compile, so A and E are incorrect. The problem here is that c1 is a String but c2 is an int,
+ so the code fails to combine on line q2, since calling length() on an int is not allowed, and C is correct.
+  The rest of the lines compile without issue. Note that calling parallel() on an already parallel is allowed,
+   and it may in fact return the same object.
+11.F, B - X (A,F)
+
+A, F. The code compiles without issue, so D and E are incorrect. Since both tasks are sub- mitted to the
+ same thread executor pool, the order cannot be determined, so B and C are incorrect and A is correct.
+ The key here is that the way the resources o1 and o2 are syn- chronized,
+  a deadlock could appear if the first thread gets o1 and the second thread gets o2;
+   therefore F is correct. The code cannot produce a livelock, since both threads are waiting, so G is incorrect.
+   Finally, if a deadlock does occur, an exception will not be thrown, so H is incorrect.
+
+12.D - X (E)
+
+E. The program compiles without issue, so B, C, and D are incorrect. Lines m2 and m3 throw a compiler warning
+about generics but still compile. Notice that RecursiveAction, unlike RecursiveTask, does not return a value.
+ However, since we used a generic Fork- JoinTask reference, the code still compiles.
+  The issue here is that the base condition is not reached since the numbers start/end are consistently positive.
+   This causes an infinite loop, although since memory is finite, Java detects this and throws a StackOverflowError,
+    so E is correct. In practice, this could also generate a locking exception before the StackOver- flowError
+    when the program runs out of memory, but in either circumstance, the program will exit.
+
+13.D,G - X (A,G)
+A, G. The code compiles and runs without issue, so C, D, E, and F are incorrect.
+The col- lect() operation groups the animals into those that do and do not start with the letter
+p. Note that there are four animals that do not start with the letter p and three animals that do.
+ The negation operator ! before the startsWith() method means that results are reversed,
+  so the output is 3 4 and A is correct, making B incorrect. Finally, the stream cre- ated by flatMap()
+  is a new stream that is not parallel by default, even though its elements are parallel streams.
+   Therefore, the performance will be single-threaded and G is correct.
+
+14.C - X (D)
+The methods on line 5, 6, 7, and 8 each throw InterruptedException, which is a checked exception;
+therefore the method does not compile and C is the only correct answer.
+If the method signature was updated to include throws InterruptedException,
+then the answer would be F, because the deque may be blocked at runtime when the offerFirst(),
+offerLast(), pollFirst(), and pollLast() operations are called. Finally, if they were not blocked and there were no other operations on the deque,
+then the output would be 20 85, and the answer would be A.
+
+15.D,G -X (C,E,G)
+A Callable lambda expression takes no values and returns a generic type; there- fore C, E, and G are correct.
+ A and F are incorrect because they both take an input param- eter. B is a Runnable lambda expression,
+  because it does not return a value, but it is not a Callable one, so B is incorrect. D is not a valid lambda expression, because it is missing a
+ semicolon at the end of the return statement, which is required when inside braces {}.
+
+16.A,F - X (F,H)
+The application compiles and does not throw an exception, so B, C, D, E, and G are incorrect.
+ Even though the stream is processed in sequential order, the tasks are submitted to a thread executor,
+ which may complete the tasks in any order. Therefore, the output can- not be determined ahead of time and F is correct, making A incorrect.
+ Finally, the thread executor is never shut down; therefore the code will run but it will never terminate, making H also correct.
+17.B - OK
+18.F - OK
+19.A, F, - OK
+20.A,C - X (A,D)
+By itself, concurrency does not guarantee which task will be completed first, so A
+is correct. Furthermore, applications with numerous resource requests will often be
+stuck waiting for a resource, which allows other tasks to run. Therefore, they tend
+to benefit more from concurrency than CPU-intensive tasks, so D is also correct.
+ B is incorrect because concurrency may in fact make an application slower if it
+ is truly single-threaded in nature. Keep in mind that there is a cost associated
+  with allocating additional memory and CPU time to manage the concurrent process.
+   C is incorrect because single-processor CPUs have been benefiting from concurrency
+   for decades. Finally, E is incorrect; there are numer- ous examples in this chapter of concurrent tasks sharing memory.
+
+21.A - X (A,C,D,E)
+
+The code compiles and runs without issue, so G and H are incorrect. The return type of performCount() is Integer,
+ so the submit() is interpreted as being applied to a Callable<Integer> value.
+ In this manner, the Future<?> is really a Future<Integer> object.
+ One possible implementation of performCount() is just to return the input param- eter;
+  therefore A is a correct answer. B is incorrect, because the return type is Integer, not Boolean.
+   The performCount() method could just return null, so C is a correct choice.
+The performCount() can also throw a runtime exception; therefore D is also a correct answer.
+ It is also possible for our performCount() to hang indefinitely, such as in a dead- lock.
+  This would cause Future.get() to hang in printResults(), making E also a cor- rect answer.
+  Finally, any exception thrown in performCount() will appear as an exception in the get()
+  operation. Since the get() operations are caught in a try/catch block in printResults(),
+  none of them will be unhandled, and F is incorrect.
+
+
+22.E - X (F)
+The key to solving this question is to remember that the execute() method returns void, not a Future object.
+ Therefore, line n1 does not compile and F is the correct answer. If the submit() method had been used instead
+  of execute(), then C would have been the correct answer, as the output of submit(Runnable) task is a Future<?>
+  object which can only return null on its get() method.

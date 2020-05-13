@@ -1,0 +1,88 @@
+1. B - OK
+2. D - OK
+3. B - X (E)
+The code does not compile. It attempts to mix generics and legacy code
+
+4. E - OK
+5. E, - X (B,C,F)
+
+A does not compile because the generic types are not compatible.
+We could say HashSet<? extends Number> hs2 = new HashSet<Integer>();. Option B uses a
+lower bound, so it allows superclass generic types.
+Option C is a traditional use of generics where the generic type is the same and the List type uses the interface as the type.
+Option D does not compile because a Set is not a List.
+Option E does not compile because upper bounds are not allowed when instantiating the type.
+Finally, Option F does compile because the upper bound is on the correct side of =.
+
+6. F - X (C)
+7. A, D - OK
+8. D - X (C)
+9. A, C, - X (E)
+The Map interface uses put() rather than add()
+10. B - X (A)
+11. A - OK
+12. A, B - X (A,B,D)
+D uses an odd syntax by explicitly listing the type, but you should be able to recognize it as acceptable.
+
+13. F- X (B,E)
+
+showSize() can take any type of List since it uses an unbounded wildcard.
+Option A is incorrect because it is a Queue and not a List.
+Option C is incorrect because the wild- card is not allowed to be on the right side of an assignment.
+Option D is incorrect because the generic types are not compatible.
+Option B is correct because a lower-bounded wildcard allows that same type to be the generic.
+Option E is correct because Integer is a subclass of Number. Vector is an old type of List.
+It isn’t common in new code, but you still need to know it for the exam and in case you encounter old code.
+14. D - X (C)
+
+This question is hard because it defines both Comparable and Comparator on the same object.
+t1 doesn’t specify a Comparator so it uses the Comparable object’s compareTo() method.
+This sorts by the text instance variable.
+t2 did specify a Comparator when calling the constructor, so it uses the compare() method, which sorts by the int.
+
+15. A - X (D)
+The list is sorted in descending order. However, it is searched using the default order, which is sorted in ascending order.
+binarySearch() requires both to use the same sort order.
+Therefore, the precondition for binarySearch() is not met and the result is undefined.
+
+16. A,B,D,F - X (B,D,F)
+Comparable is in the java.util package. -- WRONG, it is in java Lang
+
+17. B,C,D - X (B,D)
+C are incorrect because no type is specified
+
+18. A,B,C, - OK
+19. A,C - X(A,D)
+
+A LinkedList implements both List and Queue.
+The List interface has a method to remove by index. Since this method exists, Java does not autobox to call the other method.
+ Queue has only the remove by object method, so Java does autobox there. Since the number 1 is not in the list, Java does not remove anything for the Queue
+20. A - X(E)
+
+Map does not have a contains() method. It has containsKey() and containsValue() instead
+
+21. A,F  -OK
+22. F - X(B)
+When using generic types in a static method, the generic specification goes before the return type
+
+23. B, E - OK
+24. B, C,F - X(F)
+Choice A is incorrect because forEach takes a Consumer parameter, which requires one parameter.
+Choices B and C are close. The syntax for a lambda is correct.
+However, s is already defined as a local variable and therefore the lambda can’t redefine it
+. Choices D and E use incorrect syntax for a method reference
+25. F - OK
+
+
+
+
+
+
+
+
+
+
+
+
+
+

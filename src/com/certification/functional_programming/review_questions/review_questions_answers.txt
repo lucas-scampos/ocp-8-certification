@@ -1,0 +1,67 @@
+1. E X (D)
+
+D. No terminal operation is called, so the stream never executes. The methods chain to create a stream that would contain “2” and “12.”
+The first line creates an infinite stream.
+The second line would get the first two elements from that infinite stream and map each element to add an extra character.
+
+2. B - X (F)
+F. b1 is set to true since anyMatch() terminates. Even though the stream is infinite, Java finds a match on the first element and stops looking.
+However, when allMatch() runs, it needs to keep going until the end of the stream since it keeps finding matches.
+Since all elements continue to match, the program hangs.
+
+3. F - X (E)
+
+E. An infinite stream is generated where each element is twice as long as the previous
+one. b1 is set to false because Java finds an element that doesn’t match when it gets to
+the element of length 4. However, the next line tries to operate on the same stream.
+Since streams can be used only once, this throws an exception that the “stream has already been operated upon or closed.”
+ If two different streams were used, the result would be option A.
+
+4. A,B OK
+5. B,C - X (AB)
+
+A, B. Options D and E are incorrect because they are intermediate operations and not ter- minal operations.
+While option F is a reduction, it is incorrect because it is available only on primitive streams such as IntStream.
+Option C is incorrect because it is not a reduc- tion—it does not look at each element in the stream.
+
+6. F - X (A)
+A. Options C and D are incorrect because these methods do not take a Predicate parameter and do not return a boolean.
+Options B and E are incorrect because they cause the code to run infinitely.
+The stream has no way to know that a match won’t show up later.
+Option A is correct because it is safe to return false as soon as one element passes through the stream that doesn’t match.
+
+7. F OK
+8. E,D,B - X (D,E)
+- isAverage returns OptionalDouble because its a fraction
+
+D, E. The sum() method returns an int rather than an OptionalInt because the sum
+of an empty list is zero. Therefore, option E is correct. The findAny() method returns
+an OptionalInt because there might not be any elements to find.
+ Therefore, option D is correct. The average() method returns an OptionalDouble since averages of any type can result in a fraction.
+  Therefore, options A and B are both incorrect.
+
+9. B,D OK
+10. F OK
+11. A,B -X (B,C,E)
+B, C, E. As written, the code doesn’t compile because the collector expects to get a String immediately before it in the chain.
+Option B fixes this, at which point nothing is output because the collector creates a String.
+Option E fixes this and causes the output to be 11111. Since the post-increment operator is used,
+the stream contains an infinite number of 1s. Option C fixes this and causes the stream to contain increasing numbers.
+
+12. F, A,G OK
+13. B - X (F)
+
+F. If the map() and flatMap() calls were reversed, choice B would be correct.
+ In this case, the Stream created from the source is of type Stream<List<Integer>>.
+  The Function in map expects an Integer rather than a List<Integer>, so the code does not compile.
+
+14. D OK
+15. D,E OK
+16. C OK
+17. E OK
+18. D OK
+19. A,C,E OK
+20. E - X (B)
+B. Both lists and streams have forEach() methods. There is no reason to collect into a list just to loop through it.
+
+11/20

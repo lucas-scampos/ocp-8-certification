@@ -1,0 +1,39 @@
+1. C, E - OK
+2. E - OK
+3. A, D, C - X (A,D)
+4. A, D, F - X (A,D)
+- F is incorrect, as it has no right-side expression - () ->
+
+5. B, E, F, D - X (B,E,F)
+-D is incorrect, as the object must be marked private.
+If it was marked protected, it would not be properly encapsulated and other classes would have access to it
+
+6. A - OK
+7. C, E, G, H (OK)
+8. C, F, (OK)
+9. F - X (D,F)
+- The public modifier on the cheetahManager instance means that any class can access or even replace the instance, which breaks the singleton pattern;
+ hence D is required to fix the implementation
+10. D (OK)
+11. A, F (OK)
+12. C (OK)
+13. B, C, E (OK)
+14. A, B, D, E (OK)
+TurtleFrog is a Frog
+BrazilianHornedFrog is a frog
+Frog is a CanHop
+
+15. B, C, (OK)
+16. F (OK)
+17. B, F - X (B,C,F)
+- All variables are marked as private
+
+18. A, B, E (OK)
+19. A, E (B,D,E)
+- A is incorrect, as that is a property of the immutable object pattern
+- D is correct, as we only want one class writing to a log file at once
+20. A - OK
+
+14/20 - PASS
+
+wunsche - birds
